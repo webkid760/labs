@@ -1,5 +1,5 @@
 import "./index.css";
-
+import "./button.scss";
 // function add(a,b){
 // 	return a+b;
 // }
@@ -9,4 +9,4 @@ function add(a: number, b: number): number {
 }
 
 
-document.write(add(2, 6));
+console.log(add(1,3));
