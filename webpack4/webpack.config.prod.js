@@ -2,11 +2,18 @@ const path = require("path");
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const baseConfig = require('./webpack.base')
+const tsConfig = require('./config/ts')
+const sassConfig = require('./config/sass')
+const lessConfig = require('./config/less')
+const postcssConfig = require('./config/postcss')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
-const config = merge.smart(baseConfig, {
+
+const extendConfig = merge.smart(tsConfig, sassConfig, lessConfig, postcssConfig);
+const config = merge.smart(baseConfig, extendConfig, {
     module: {
         rules: [{
                 test: /\.css/,
@@ -22,22 +29,6 @@ const config = merge.smart(baseConfig, {
                             minimize: true
                         }
                     }
-                ]
-            }, {
-                test: /\.scss/,
-                include: [
-                    path.resolve(__dirname, 'src'),
-                ],
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    {
-                        loader: 'css-loader?modules=false',
-                        options: {
-                            importLoaders: 1,
-                            minimize: true
-                        }
-                    },
-                    "sass-loader"
                 ]
             },
             {
@@ -73,13 +64,6 @@ const config = merge.smart(baseConfig, {
                     path.resolve(__dirname, 'src'), // src 目录下的才需要经过 babel-loader 处理
                 ],
                 loader: 'babel-loader',
-            },
-            {
-                test: /\.tsx?/, // 支持 ts 和 tsx
-                include: [
-                    path.resolve(__dirname, 'src'), // src 目录下的才需要处理
-                ],
-                loader: 'ts-loader',
             }
         ]
     }
@@ -93,7 +77,10 @@ config.plugins.push(
     }),
     new MiniCssExtractPlugin({
         filename: "[name].[hash:5].css"
-    })
+    }),
+    //使用CSS压缩
+    new OptimizeCSSAssetsPlugin({})
 )
+
 
 module.exports = config
