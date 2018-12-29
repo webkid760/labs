@@ -31,5 +31,8 @@
     "typescript": "^3.2.2",
     "webpack-merge": "^4.1.5"
   },
-  "dependencies": {}
+  "dependencies": {
+    "postcss-preset-env": "^6.5.0",
+    "precss": "^4.0.0"
+  }
 }

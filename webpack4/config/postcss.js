@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
     module: {
         rules: [{
-            test: /\.less/,
+            test: /\.css/,
             include: [
                 path.resolve(__dirname, '../src'),
             ],
@@ -18,11 +18,15 @@ module.exports = {
                     }
                 }, {
                     loader: 'postcss-loader',
-                    options: {
-                        plugins: [
-                            require('autoprefixer')()
-                        ]
-                    }
+                    // options: {
+                    //     plugins: [
+                    //         require('autoprefixer')({
+                    //             browsers: ['last 4 versions']
+                    //         }),
+                    //         require('postcss-preset-env')()
+                    //
+                    //     ]
+                    // }
                 }
             ]
         }]

@@ -2,3 +2,61 @@ body{
 	font-size: 30px;
   background: #ff0 url(images/feature3.png) center center no-repeat;
 }
+:root {
+  --mainColor: #12345678;
+	--textSize:20px;
+}
+
+.text{
+	color:  var(--mainColor);
+	font-size: var(--textSize);
+}
+.active{
+	--textSize:30px;
+}
+
+greeting {
+  display: block;
+  font-size: 36px;
+  color: red;
+}
+
+.container{
+	display: flex;
+	flex-direction: row;
+	/* flex-wrap: wrap-reverse; */
+	/* flex-flow: row wrap; */
+	/* flex-flow: <‘flex-direction’> || <‘flex-wrap’> */
+	/* justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly; */
+	/* align-items: flex-start | flex-end | center | baseline | stretch; */
+	/* align-content: flex-start | flex-end | center | space-between | space-around | stretch; */
+
+
+}
+.container > li{
+	background: #f00;
+	padding: 5px;
+	width: 200px;
+	height: 150px;
+	/* order: 0; */
+	/* flex-grow: 2; */
+	/* flex-shrink:3; */
+	/* flex-basis: <length> | auto;  */
+  /* flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]	 */
+	/* align-self: auto | flex-start | flex-end | center | baseline | stretch; */
+}
+
+@keyframes myfirst
+{
+    0%   {background: red;}
+    25%  {background: yellow;}
+    50%  {background: blue;}
+    100% {background: green;}
+}
+
+
+body {
+  color: var(--mainColor);
+  font-family: system-ui;
+  overflow-wrap: break-word;
+}
